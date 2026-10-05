@@ -60,12 +60,6 @@ export function LoginPage() {
           <h2>Acesse sua conta</h2>
           <p>Use seu e-mail corporativo para continuar.</p>
           <LoginForm onSubmit={submit} error={error} />
-          <div className="demo-accounts">
-            <strong>Contas de demonstração</strong>
-            <span>Solicitante: marina@empresa.com</span>
-            <span>Atendente: tiago@empresa.com</span>
-            <span>Senha: 123456</span>
-          </div>
           <div className="login-help">
             Ainda não possui conta? <Link to="/register">Cadastre-se</Link>
           </div>
