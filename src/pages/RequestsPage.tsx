@@ -36,6 +36,8 @@ export function RequestsPage() {
       <RequestFilters
         value={filters}
         categories={categories.data}
+        categoriesLoading={categories.isLoading}
+        categoriesError={categories.isError}
         onChange={update}
         onReset={reset}
       />

@@ -32,10 +32,13 @@ export function EditRequestPage() {
           initial={{
             title: query.data.title,
             category: query.data.category,
+            priority: query.data.priority,
             description: query.data.description,
           }}
           onSubmit={submit}
           categories={categories.data}
+          categoriesLoading={categories.isLoading}
+          categoriesError={categories.isError}
           submitLabel="Salvar alterações"
         />
       </section>

@@ -51,5 +51,18 @@ export function useRequestMutations() {
         refresh();
       },
     }),
+    assign: useMutation({
+      mutationFn: ({ id, assigneeId }: { id: string; assigneeId: string | null }) =>
+        requestService.assign(id, assigneeId),
+      onSuccess: (_, v) => {
+        qc.invalidateQueries({ queryKey: ['request', user?.id, v.id] });
+        refresh();
+      },
+    }),
+    comment: useMutation({
+      mutationFn: ({ id, message }: { id: string; message: string }) =>
+        requestService.comment(id, message),
+      onSuccess: (_, v) => qc.invalidateQueries({ queryKey: ['request', user?.id, v.id] }),
+    }),
   };
 }

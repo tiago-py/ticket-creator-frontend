@@ -1,4 +1,4 @@
-import { ClipboardList, LayoutDashboard, LogOut, Menu, Plus, X } from 'lucide-react';
+import { ClipboardList, LayoutDashboard, ListTree, LogOut, Menu, Plus, X } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { Logo } from '../components/Logo';
@@ -34,6 +34,12 @@ export function AppLayout() {
             <ClipboardList />
             Solicitações
           </NavLink>
+          {user?.role === 'atendente' && (
+            <NavLink to="/categories" onClick={() => setOpen(false)}>
+              <ListTree />
+              Categorias
+            </NavLink>
+          )}
         </nav>
         <div className="sidebar-footer">
           <div className="user-card">

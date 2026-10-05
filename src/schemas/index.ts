@@ -12,6 +12,7 @@ export const registerSchema = z.object({
 export const requestSchema = z.object({
   title: z.string().trim().min(4, 'Use ao menos 4 caracteres').max(100),
   category: z.string().trim().min(2, 'Informe uma categoria').max(50),
+  priority: z.enum(['Baixa', 'Média', 'Alta', 'Urgente']),
   description: z
     .string()
     .trim()

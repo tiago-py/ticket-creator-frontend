@@ -6,6 +6,7 @@ export function useRequestFilters() {
     q: params.get('q') ?? '',
     status: params.get('status') ?? '',
     category: params.get('category') ?? '',
+    priority: params.get('priority') ?? '',
     from: params.get('from') ?? '',
     to: params.get('to') ?? '',
     page: Number(params.get('page') ?? 1),

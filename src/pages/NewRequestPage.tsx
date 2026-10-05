@@ -23,7 +23,12 @@ export function NewRequestPage() {
         description="Preencha as informações abaixo. Você poderá acompanhar o andamento pelo portal."
       />
       <section className="panel form-panel">
-        <RequestForm onSubmit={submit} categories={categories.data} />
+        <RequestForm
+          onSubmit={submit}
+          categories={categories.data}
+          categoriesLoading={categories.isLoading}
+          categoriesError={categories.isError}
+        />
       </section>
     </div>
   );

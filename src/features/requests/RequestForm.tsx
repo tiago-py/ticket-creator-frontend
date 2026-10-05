@@ -7,11 +7,15 @@ export function RequestForm({
   initial,
   onSubmit,
   categories = [],
+  categoriesLoading = false,
+  categoriesError = false,
   submitLabel = 'Criar solicitação',
 }: {
   initial?: RequestFormData;
   onSubmit: (v: RequestFormData) => Promise<void>;
   categories?: string[];
+  categoriesLoading?: boolean;
+  categoriesError?: boolean;
   submitLabel?: string;
 }) {
   const {
@@ -21,7 +25,7 @@ export function RequestForm({
     formState: { errors, isSubmitting },
   } = useForm<RequestFormData>({
     resolver: zodResolver(requestSchema),
-    defaultValues: initial ?? { title: '', description: '', category: 'TI' },
+    defaultValues: initial ?? { title: '', description: '', category: '', priority: 'Média' },
   });
   const description = watch('description') ?? '';
   return (
@@ -33,20 +37,40 @@ export function RequestForm({
         <span className="hint">Seja breve e objetivo para facilitar o atendimento.</span>
       </div>
       <div className="field">
-        <label htmlFor="category">Categoria</label>
-        <input
-          id="category"
-          list="category-options"
-          placeholder="Selecione ou digite uma nova categoria"
-          {...register('category')}
-        />
-        <datalist id="category-options">
-          {categories.map((c) => (
-            <option key={c} value={c} />
+        <label htmlFor="priority">Prioridade</label>
+        <select id="priority" {...register('priority')}>
+          {['Baixa', 'Média', 'Alta', 'Urgente'].map((priority) => (
+            <option key={priority} value={priority}>
+              {priority}
+            </option>
           ))}
-        </datalist>
+        </select>
+      </div>
+      <div className="field">
+        <label htmlFor="category">Categoria</label>
+        <select
+          id="category"
+          disabled={categoriesLoading || categoriesError}
+          aria-describedby="category-help"
+          {...register('category')}
+        >
+          <option value="">
+            {categoriesLoading
+              ? 'Carregando categorias...'
+              : categoriesError
+                ? 'Não foi possível carregar as categorias'
+                : 'Selecione uma categoria'}
+          </option>
+          {categories.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
         {errors.category && <small role="alert">{errors.category.message}</small>}
-        <span className="hint">Você pode usar uma categoria existente ou cadastrar uma nova.</span>
+        <span className="hint" id="category-help">
+          As categorias são carregadas do sistema.
+        </span>
       </div>
       <div className="field">
         <label htmlFor="description">Descrição</label>
@@ -67,7 +91,10 @@ export function RequestForm({
         <Link className="button secondary" to="/requests">
           <ArrowLeft size={17} /> Cancelar
         </Link>
-        <button className="button primary" disabled={isSubmitting}>
+        <button
+          className="button primary"
+          disabled={isSubmitting || categoriesLoading || categoriesError}
+        >
           {isSubmitting ? (
             'Salvando...'
           ) : (

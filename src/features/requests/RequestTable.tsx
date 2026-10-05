@@ -14,6 +14,7 @@ export function RequestTable({ rows }: { rows: ServiceRequest[] }) {
           <tr>
             <th>Solicitação</th>
             <th>Categoria</th>
+            <th>Prioridade</th>
             <th>Data</th>
             <th>Status</th>
             <th>
@@ -31,6 +32,11 @@ export function RequestTable({ rows }: { rows: ServiceRequest[] }) {
                 </Link>
               </td>
               <td>{row.category}</td>
+              <td>
+                <span className={`priority priority-${row.priority.toLowerCase()}`}>
+                  {row.priority}
+                </span>
+              </td>
               <td>{date(row.createdAt)}</td>
               <td>
                 <StatusBadge status={row.status} />

@@ -1,6 +1,7 @@
 export type RequestStatus = 'Aberto' | 'Em atendimento' | 'Concluído';
 export type UserRole = 'solicitante' | 'atendente';
 export type Category = string;
+export type RequestPriority = 'Baixa' | 'Média' | 'Alta' | 'Urgente';
 export interface User {
   id: string;
   name: string;
@@ -14,6 +15,10 @@ export interface ServiceRequest {
   title: string;
   description: string;
   category: Category;
+  priority: RequestPriority;
+  assignee: Pick<User, 'id' | 'name'> | null;
+  comments: RequestComment[];
+  history: RequestHistory[];
   status: RequestStatus;
   requester: string;
   requesterId: string;
@@ -24,6 +29,7 @@ export interface RequestFiltersValue {
   q: string;
   status: string;
   category: string;
+  priority: string;
   from: string;
   to: string;
   page: number;
@@ -44,4 +50,23 @@ export interface RequestInput {
   title: string;
   description: string;
   category: Category;
+  priority: RequestPriority;
+}
+export interface RequestComment {
+  id: string;
+  message: string;
+  author: Pick<User, 'id' | 'name'>;
+  createdAt: string;
+}
+export interface RequestHistory {
+  id: string;
+  action: string;
+  details: string | null;
+  actor: Pick<User, 'id' | 'name'>;
+  createdAt: string;
+}
+export interface CategoryItem {
+  id: string;
+  name: string;
+  active: boolean;
 }

@@ -10,7 +10,15 @@ import { useRequests } from '../hooks/useRequests';
 export function DashboardPage() {
   const { user } = useAuth(),
     summary = useDashboard(),
-    recent = useRequests({ q: '', status: '', category: '', from: '', to: '', page: 1 }),
+    recent = useRequests({
+      q: '',
+      status: '',
+      category: '',
+      priority: '',
+      from: '',
+      to: '',
+      page: 1,
+    }),
     canCreate = user?.role === 'solicitante';
   if (summary.isLoading) return <LoadingState />;
   if (summary.isError || !summary.data) return <ErrorState retry={() => summary.refetch()} />;

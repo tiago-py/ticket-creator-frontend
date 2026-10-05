@@ -9,6 +9,8 @@ const apiRequest = {
   requesterId: 'usr-1',
   requester: { id: 'usr-1', name: 'Marina Costa' },
   category: { id: 'cat-1', name: 'TI' },
+  priority: 'MEDIA',
+  assignee: null,
   createdAt: '2026-10-01T12:00:00.000Z',
   updatedAt: '2026-10-01T12:00:00.000Z',
 };
@@ -31,6 +33,7 @@ describe('requestService HTTP', () => {
       q: 'pedido',
       status: 'Aberto',
       category: 'TI',
+      priority: '',
       from: '',
       to: '',
       page: 1,

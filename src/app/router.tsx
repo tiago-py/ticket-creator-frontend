@@ -9,6 +9,7 @@ import { NewRequestPage } from '../pages/NewRequestPage';
 import { RequestDetailsPage } from '../pages/RequestDetailsPage';
 import { EditRequestPage } from '../pages/EditRequestPage';
 import { NotFoundPage } from '../pages/NotFoundPage';
+import { CategoriesPage } from '../pages/CategoriesPage';
 export const router = createBrowserRouter([
   {
     element: <PublicRoute />,
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
           { path: '/requests/new', element: <NewRequestPage /> },
           { path: '/requests/:id', element: <RequestDetailsPage /> },
           { path: '/requests/:id/edit', element: <EditRequestPage /> },
+          { path: '/categories', element: <CategoriesPage /> },
         ],
       },
     ],

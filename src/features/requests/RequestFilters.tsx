@@ -3,11 +3,15 @@ import type { RequestFiltersValue } from '../../types';
 export function RequestFilters({
   value,
   categories = [],
+  categoriesLoading = false,
+  categoriesError = false,
   onChange,
   onReset,
 }: {
   value: RequestFiltersValue;
   categories?: string[];
+  categoriesLoading?: boolean;
+  categoriesError?: boolean;
   onChange: (v: Partial<RequestFiltersValue>) => void;
   onReset: () => void;
 }) {
@@ -37,15 +41,38 @@ export function RequestFilters({
           <option>Em atendimento</option>
           <option>Concluído</option>
         </select>
+        <div className="filter-field">
+          <label htmlFor="category-filter">Categoria</label>
+          <select
+            id="category-filter"
+            value={value.category}
+            disabled={categoriesLoading || categoriesError}
+            onChange={(e) => onChange({ category: e.target.value, page: 1 })}
+          >
+            <option value="">
+              {categoriesLoading
+                ? 'Carregando categorias...'
+                : categoriesError
+                  ? 'Categorias indisponíveis'
+                  : 'Todas as categorias'}
+            </option>
+            {categories.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </div>
         <select
-          aria-label="Categoria"
-          value={value.category}
-          onChange={(e) => onChange({ category: e.target.value, page: 1 })}
+          aria-label="Prioridade"
+          value={value.priority}
+          onChange={(e) => onChange({ priority: e.target.value, page: 1 })}
         >
-          <option value="">Todas as categorias</option>
-          {categories.map((c) => (
-            <option key={c}>{c}</option>
-          ))}
+          <option value="">Todas as prioridades</option>
+          <option>Baixa</option>
+          <option>Média</option>
+          <option>Alta</option>
+          <option>Urgente</option>
         </select>
         <input
           aria-label="Data inicial"

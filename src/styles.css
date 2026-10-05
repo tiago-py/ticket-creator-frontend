@@ -636,6 +636,12 @@ tbody tr:hover {
 .field textarea {
   resize: vertical;
 }
+.field select:disabled,
+.filter-row select:disabled {
+  color: #777;
+  cursor: not-allowed;
+  background: #f3f3f0;
+}
 .field small,
 .field-meta {
   font-size: 11px;
@@ -742,6 +748,99 @@ tbody tr:hover {
   color: #777;
   font-size: 11px;
   margin-bottom: 5px;
+}
+.priority {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  background: #ecece8;
+}
+.priority-alta,
+.priority-urgente {
+  color: #9b2525;
+  background: #f8e5e5;
+}
+.detail-head .priority {
+  margin-left: 8px;
+}
+.detail-secondary {
+  margin-top: 20px;
+}
+.conversation,
+.timeline,
+.category-admin {
+  padding: 24px;
+}
+.comment-list article {
+  border-top: 1px solid #e8e8e4;
+  padding: 14px 0;
+}
+.comment-list time,
+.timeline small,
+.category-list small,
+.muted {
+  color: #777;
+  font-size: 11px;
+}
+.comment-list time {
+  margin-left: 8px;
+}
+.comment-form,
+.category-create {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+.comment-form textarea,
+.category-create input {
+  border: 1px solid #d2d2cd;
+  border-radius: 8px;
+  padding: 12px;
+}
+.comment-form .button {
+  justify-self: end;
+}
+.timeline ol,
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+.timeline li {
+  border-left: 2px solid #d2d2cd;
+  padding: 0 0 18px 16px;
+}
+.timeline p {
+  margin: 5px 0;
+}
+.category-create > div,
+.category-list li {
+  display: flex;
+  gap: 10px;
+}
+.category-create input {
+  flex: 1;
+}
+.category-list li {
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e8e8e4;
+  padding: 14px 0;
+}
+.category-list li span {
+  display: grid;
+  gap: 3px;
+}
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.filter-field label {
+  color: #777;
+  font-size: 10px;
+  font-weight: 700;
 }
 .toast {
   display: flex;

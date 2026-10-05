@@ -9,6 +9,7 @@ describe('schemas', () => {
       requestSchema.safeParse({
         title: 'Novo acesso',
         category: 'Acesso e permissões',
+        priority: 'Média',
         description: 'Preciso acessar o painel comercial.',
       }).success,
     ).toBe(true);
