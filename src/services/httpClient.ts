@@ -1,4 +1,6 @@
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api';
+const configuredApiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api';
+const normalizedApiUrl = configuredApiUrl.replace(/\/+$/, '');
+const API_URL = normalizedApiUrl.endsWith('/api') ? normalizedApiUrl : `${normalizedApiUrl}/api`;
 const TOKEN_KEY = 'atende_access_token';
 export class ApiError extends Error {
   constructor(

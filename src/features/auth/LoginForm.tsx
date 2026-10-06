@@ -17,7 +17,7 @@ export function LoginForm({
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { email: 'marina@empresa.com', password: '123456' },
+    defaultValues: { email: '', password: '' },
   });
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -32,9 +32,6 @@ export function LoginForm({
       <div className="field">
         <div className="label-row">
           <label htmlFor="password">Senha</label>
-          <button type="button" className="text-button">
-            Esqueci minha senha
-          </button>
         </div>
         <div className="input-icon">
           <LockKeyhole />
